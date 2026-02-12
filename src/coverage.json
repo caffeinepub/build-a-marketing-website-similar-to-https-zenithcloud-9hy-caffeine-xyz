@@ -1,0 +1,51 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T06:31:12.752Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Update the Home page hero section copy to use the following English text: headline \"High Performance Game Servers\" and subheadline \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\"",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/marketingContent.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/marketingContent.ts"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "On the Home page hero section, remove the existing \"View Plans\" and \"Learn More\" buttons and replace them with a single primary button labeled \"Get started\" that navigates to the Plans page route (/plans).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/marketingContent.ts",
+          "frontend/src/components/marketing/HeroSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/marketingContent.ts",
+          "frontend/src/components/marketing/HeroSection.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/marketing/HeroSection.tsx",
+    "frontend/src/content/marketingContent.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

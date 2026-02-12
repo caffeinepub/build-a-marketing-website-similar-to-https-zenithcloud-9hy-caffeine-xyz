@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-update-the-home-page-hero-section-copy-to-use-the-following-english-text-headline-high-performance-game-servers-and-subheadline-experience-lightning-fast-performance-unbeatable-reliability-and-24-7-support-for-all-your-favorite-games",
+      "title": "Update the Home page hero section copy to use the following English text: headline \"High Performance Game Servers\" and subheadline \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\"",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-home-page-hero-section-remove-the-existing-view-plans-and-learn-more-buttons-and-replace-them-with-a-single-primary-button-labeled-get-started-that-navigates-to-the-plans-page-route-plans",
+      "title": "On the Home page hero section, remove the existing \"View Plans\" and \"Learn More\" buttons and replace them with a single primary button labeled \"Get started\" that navigates to the Plans page route (/plans).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update home page hero content to: \"High Performance Game Servers\" and description text provided",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "On home page, remove \"View Plans\" and \"Learn more\" buttons; add \"Get started\" button linking to the Plans page",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Update home page hero text and replace CTA buttons with a single Get started link to Plans",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

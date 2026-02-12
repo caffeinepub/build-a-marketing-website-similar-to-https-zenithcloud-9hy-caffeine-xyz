@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 9999px;
+        
+        /* Light mode - Purple palette inspired by streetlights */
+        --background: 0.30 0.08 290;
+        --foreground: 0.95 0.04 280;
+        
+        --card: 0.35 0.07 290;
+        --card-foreground: 0.95 0.04 280;
+        
+        --popover: 0.35 0.07 290;
+        --popover-foreground: 0.95 0.04 280;
+        
+        --primary: 0.55 0.18 285;
+        --primary-foreground: 0.98 0.02 285;
+        
+        --secondary: 0.40 0.10 295;
+        --secondary-foreground: 0.95 0.04 280;
+        
+        --muted: 0.38 0.08 290;
+        --muted-foreground: 0.70 0.08 295;
+        
+        --accent: 0.60 0.20 280;
+        --accent-foreground: 0.98 0.02 280;
+        
+        --destructive: 0.55 0.24 20;
+        --destructive-foreground: 0.98 0 0;
+        
+        --border: 0.50 0.12 290;
+        --input: 0.40 0.08 290;
+        --ring: 0.55 0.18 285;
+        
+        --chart-1: 0.55 0.16 285;
+        --chart-2: 0.60 0.18 280;
+        --chart-3: 0.65 0.14 290;
+        --chart-4: 0.50 0.14 295;
+        --chart-5: 0.70 0.12 285;
+        
+        /* Discord CTA specific tokens - purple theme */
+        --discord-icon: 0.50 0.20 285;
+        --discord-button: 0.45 0.18 288;
+        --discord-button-hover: 0.40 0.16 288;
+    }
+
+    .dark {
+        --background: 0.20 0.10 290;
+        --foreground: 0.95 0.05 280;
+        
+        --card: 0.25 0.09 290;
+        --card-foreground: 0.95 0.05 280;
+        
+        --popover: 0.23 0.09 290;
+        --popover-foreground: 0.95 0.05 280;
+        
+        --primary: 0.60 0.22 285;
+        --primary-foreground: 0.12 0.06 290;
+        
+        --secondary: 0.30 0.10 295;
+        --secondary-foreground: 0.95 0.05 280;
+        
+        --muted: 0.28 0.08 290;
+        --muted-foreground: 0.70 0.10 295;
+        
+        --accent: 0.65 0.24 280;
+        --accent-foreground: 0.12 0.06 280;
+        
+        --destructive: 0.60 0.22 20;
+        --destructive-foreground: 0.95 0 0;
+        
+        --border: 0.40 0.12 290;
+        --input: 0.30 0.08 290;
+        --ring: 0.60 0.22 285;
+        
+        --chart-1: 0.60 0.18 285;
+        --chart-2: 0.65 0.20 280;
+        --chart-3: 0.55 0.16 290;
+        --chart-4: 0.70 0.18 295;
+        --chart-5: 0.75 0.14 285;
+        
+        /* Discord CTA specific tokens - dark mode purple */
+        --discord-icon: 0.55 0.24 285;
+        --discord-button: 0.50 0.22 288;
+        --discord-button-hover: 0.45 0.20 288;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+        background: oklch(0.18 0.12 290);
+    }
+    
+    body {
+        @apply text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        background-image: url('/assets/generated/purple-streetlights-bg.dim_736x736.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+    }
+    
+    /* Ensure smooth scrolling respects reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+@layer components {
+    /* Minecraft-inspired blocky card style */
+    .mc-card {
+        @apply border-4 border-border rounded-none;
+        background-color: oklch(var(--card) / 0.8);
+        backdrop-filter: blur(12px);
+        box-shadow: 4px 4px 0 0 oklch(var(--border) / 0.5);
+    }
+    
+    /* Minecraft-inspired pixel border */
+    .mc-pixel-border {
+        @apply border-2 border-border;
+        image-rendering: pixelated;
+    }
+    
+    /* Minecraft-style button - now fully rounded */
+    .mc-button {
+        @apply rounded-full border-4;
+        border-color: oklch(var(--primary) / 0.3);
+        box-shadow: 3px 3px 0 0 oklch(var(--primary) / 0.2);
+    }
+    
+    .mc-button-outline {
+        @apply rounded-full border-4 border-border;
+        box-shadow: 3px 3px 0 0 oklch(var(--border) / 0.5);
+    }
+    
+    /* Minecraft-style text */
+    .minecraft-text {
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+        letter-spacing: 0.02em;
+    }
+    
+    /* Discord CTA specific styles */
+    .discord-icon {
+        color: oklch(var(--discord-icon));
+    }
+    
+    .discord-button {
+        background-color: oklch(var(--discord-button));
+        color: oklch(var(--primary-foreground));
+    }
+    
+    .discord-button:hover {
+        background-color: oklch(var(--discord-button-hover));
+    }
+}
+
+@layer utilities {
+    /* Scroll margin for anchor navigation with sticky header */
+    .scroll-mt-20 {
+        scroll-margin-top: 5rem;
+    }
+    
+    /* Focus visible styles for accessibility */
+    .focus-visible\:ring-2:focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 2px oklch(var(--ring));
+    }
+}

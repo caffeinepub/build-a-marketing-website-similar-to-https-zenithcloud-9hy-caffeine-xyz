@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Update home page hero text and replace CTA buttons with a single Get started link to Plans",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Update the Home page hero section copy to use the following English text: headline \"High Performance Game Servers\" and subheadline \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\"",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "High Performance\nGame Servers\n\nExperience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the Home page hero, the main H1 reads \"High Performance Game Servers\" (same styling as before).",
+        "On the Home page hero, the supporting paragraph reads exactly: \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\""
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "On the Home page hero section, remove the existing \"View Plans\" and \"Learn More\" buttons and replace them with a single primary button labeled \"Get started\" that navigates to the Plans page route (/plans).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Remove the View Plans and learn more button and add Get started Button and link it with the plans page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Home page hero CTA area shows exactly one button.",
+        "The single button label is exactly \"Get started\".",
+        "Clicking the \"Get started\" button navigates to /plans using the existing TanStack Router Link navigation (no full page reload).",
+        "The previously-present secondary hero button is not rendered on the Home page hero."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit any files under frontend/src/components/ui (Shadcn UI components).",
+    "Do not edit immutable hook/bootstrap files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+  ],
+  "nonGoals": [
+    "No backend/canister changes.",
+    "Do not change any other pages (e.g., About, Plans content) beyond what is necessary for the Home page hero update.",
+    "Do not add new authentication or payment behavior."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

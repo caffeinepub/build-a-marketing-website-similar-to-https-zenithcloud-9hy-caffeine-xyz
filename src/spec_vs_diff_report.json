@@ -1,0 +1,37 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T06:31:12.750Z",
+  "summary": "REQ-1 and REQ-2 appear implemented: the hero headline/subheadline are updated to the specified exact text (via marketingContent), and the hero CTA area renders a single TanStack Router <Link> button labeled \"Get started\" that navigates to /plans. Some additional non-requested file updates are present (project metadata/summaries).",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Updated project tracking/metadata file without being requested in the BuildRequest.",
+      "reason": "BuildRequest only asks for Home hero text + CTA changes and includes constraints/non-goals; it does not request updating project_state.json.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Updated generated file summary content without being requested in the BuildRequest.",
+      "reason": "BuildRequest does not mention updating documentation/summary artifacts; only Home hero content/CTA should change.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Changed/introduced navigation CTA text \"Get Started\" in marketing content (potentially affecting TopNav or other areas beyond the Home hero).",
+      "reason": "REQ-1/REQ-2 are limited to the Home page hero copy and hero CTA buttons; changing global nav CTA text is not requested and could affect other pages/components.",
+      "evidence": [
+        "frontend/src/content/marketingContent.ts"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/marketing/HeroSection.tsx",
+    "frontend/src/content/marketingContent.ts",
+    "project_state.json"
+  ]
+}

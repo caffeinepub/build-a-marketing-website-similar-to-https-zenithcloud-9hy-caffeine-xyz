@@ -1,0 +1,44 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update Home hero copy and consolidate CTA to a single Get started link",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Update Home page hero headline and subheadline copy.",
+      "acceptanceCriteria": [
+        "On the Home page hero, the main H1 reads \"High Performance Game Servers\" (same styling as before).",
+        "On the Home page hero, the supporting paragraph reads exactly: \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\""
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/marketingContent.ts",
+          "operation": "modify",
+          "description": "Update marketingContent.hero.headline to \"High Performance Game Servers\" and marketingContent.hero.subheadline to \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\" so the HeroSection renders the new copy on Home."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Replace the two Home hero CTA buttons with a single primary \"Get started\" button linking to /plans via TanStack Router Link.",
+      "acceptanceCriteria": [
+        "The Home page hero CTA area shows exactly one button.",
+        "The single button label is exactly \"Get started\".",
+        "Clicking the \"Get started\" button navigates to /plans using the existing TanStack Router Link navigation (no full page reload).",
+        "The previously-present secondary hero button is not rendered on the Home page hero."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/marketingContent.ts",
+          "operation": "modify",
+          "description": "Update marketingContent.hero.primaryCTA to exactly \"Get started\" (and leave other pages' content unchanged unless required for the Home hero)."
+        },
+        {
+          "path": "frontend/src/components/marketing/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Remove the secondary hero Button/Link (currently rendering marketingContent.hero.secondaryCTA to /about) so only a single primary Button remains; keep the existing TanStack Router <Link to=\"/plans\"> for navigation and preserve the existing primary button styling."
+        }
+      ]
+    }
+  ]
+}
