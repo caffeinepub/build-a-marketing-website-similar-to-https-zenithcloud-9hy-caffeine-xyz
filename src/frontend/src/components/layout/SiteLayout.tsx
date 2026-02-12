@@ -5,7 +5,7 @@ import DiscordCTABlock from '../marketing/DiscordCTABlock';
 
 export default function SiteLayout() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mixed-text-scope">
       <TopNav />
       <main>
         <Outlet />

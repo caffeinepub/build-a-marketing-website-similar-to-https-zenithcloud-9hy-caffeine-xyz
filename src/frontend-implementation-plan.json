@@ -1,42 +1,58 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Home hero copy and consolidate CTA to a single Get started link",
+  "title": "Add Terms of Service page and navigation after Payment Method",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Update Home page hero headline and subheadline copy.",
+      "summary": "Create a new Terms of Service page with an accessible /tos route rendered inside the existing SiteLayout, using English legal content styled consistently with existing Minecraft-themed UI.",
       "acceptanceCriteria": [
-        "On the Home page hero, the main H1 reads \"High Performance Game Servers\" (same styling as before).",
-        "On the Home page hero, the supporting paragraph reads exactly: \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\""
+        "A new page component exists at a non-immutable path under frontend/src/pages (e.g., TermsOfServicePage.tsx or TosPage.tsx).",
+        "App routing includes a new route for the TOS page (e.g., path \"/tos\") and it renders inside the existing SiteLayout.",
+        "The TOS page content is written in English and is readable (clear headings/sections) with styling consistent with the existing Minecraft-themed cards/typography used across other pages."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/content/marketingContent.ts",
+          "path": "frontend/src/pages/TermsOfServicePage.tsx",
+          "operation": "create",
+          "description": "Add a new TermsOfServicePage that renders a clear English Terms of Service structure (e.g., Introduction, Eligibility, Accounts, Payments/Refunds reference, Acceptable Use, UGC, Service Availability, Termination, Disclaimers, Limitation of Liability, Changes, Contact) using existing mc-card / minecraft-text styling patterns and MotionInView for consistent animated sections. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update marketingContent.hero.headline to \"High Performance Game Servers\" and marketingContent.hero.subheadline to \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\" so the HeroSection renders the new copy on Home."
+          "description": "Register a new TanStack Router route for the TOS page at path \"/tos\" (as a child of the root route so it renders within SiteLayout), and import the new TermsOfServicePage component. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Replace the two Home hero CTA buttons with a single primary \"Get started\" button linking to /plans via TanStack Router Link.",
+      "summary": "Add a prominent next-step CTA on the Payment Method page that navigates to the new /tos route without altering existing content.",
       "acceptanceCriteria": [
-        "The Home page hero CTA area shows exactly one button.",
-        "The single button label is exactly \"Get started\".",
-        "Clicking the \"Get started\" button navigates to /plans using the existing TanStack Router Link navigation (no full page reload).",
-        "The previously-present secondary hero button is not rendered on the Home page hero."
+        "The Payment Method page includes a visible call-to-action near the bottom (after the existing sections) that navigates to the TOS route when clicked.",
+        "Navigation uses TanStack Router <Link> (consistent with the rest of the app) and works on both desktop and mobile.",
+        "No existing Payment Method content is removed or broken."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PaymentMethodPage.tsx",
+          "operation": "modify",
+          "description": "Append a new bottom section (after the existing payment/security content) containing a prominent CTA that uses TanStack Router Link to navigate to \"/tos\"; use the shadcn-ui Button (existing app pattern) for prominence while keeping all current sections intact. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Expose the Terms of Service route in shared marketing navigation and footer link lists so it appears after Payment Method and is discoverable from the footer.",
+      "acceptanceCriteria": [
+        "frontend/src/content/marketingContent.ts includes a new navigation entry for the TOS route placed immediately after the existing \"/payment\" entry.",
+        "Footer link lists (from marketingContent.footer.*Links) include a Terms of Service entry pointing to the TOS route (placement consistent with existing categories).",
+        "Top navigation renders the new Terms of Service link without layout issues in desktop and mobile menus."
       ],
       "file_operations": [
         {
           "path": "frontend/src/content/marketingContent.ts",
           "operation": "modify",
-          "description": "Update marketingContent.hero.primaryCTA to exactly \"Get started\" (and leave other pages' content unchanged unless required for the Home hero)."
-        },
-        {
-          "path": "frontend/src/components/marketing/HeroSection.tsx",
-          "operation": "modify",
-          "description": "Remove the secondary hero Button/Link (currently rendering marketingContent.hero.secondaryCTA to /about) so only a single primary Button remains; keep the existing TanStack Router <Link to=\"/plans\"> for navigation and preserve the existing primary button styling."
+          "description": "Add a new navigation item { path: \"/tos\", label: \"Terms of Service\" } immediately after the existing \"/payment\" entry, and add a corresponding footer link (e.g., in companyLinks near Payment) pointing to \"/tos\" so TopNav and Footer render it automatically from shared data. Verify the component's usage instructions before implementing."
         }
       ]
     }

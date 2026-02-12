@@ -1,53 +1,72 @@
 {
   "kind": "build_request",
-  "title": "Update home page hero text and replace CTA buttons with a single Get started link to Plans",
+  "title": "Add Terms of Service page after Payment Method",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the Home page hero section copy to use the following English text: headline \"High Performance Game Servers\" and subheadline \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\"",
+      "text": "Add a new Terms of Service (TOS) page that is accessible via a new route (e.g., \"/tos\") and uses English user-facing text.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-3"
         ],
         "quotes": [
-          "High Performance\nGame Servers\n\nExperience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games."
+          "Create a page TOS after payment method"
         ]
       },
       "acceptanceCriteria": [
-        "On the Home page hero, the main H1 reads \"High Performance Game Servers\" (same styling as before).",
-        "On the Home page hero, the supporting paragraph reads exactly: \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\""
+        "A new page component exists at a non-immutable path under frontend/src/pages (e.g., TermsOfServicePage.tsx or TosPage.tsx).",
+        "App routing includes a new route for the TOS page (e.g., path \"/tos\") and it renders inside the existing SiteLayout.",
+        "The TOS page content is written in English and is readable (clear headings/sections) with styling consistent with the existing Minecraft-themed cards/typography used across other pages."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "On the Home page hero section, remove the existing \"View Plans\" and \"Learn More\" buttons and replace them with a single primary button labeled \"Get started\" that navigates to the Plans page route (/plans).",
+      "text": "Update the Payment Method page to provide a clear next-step navigation to the new TOS page (i.e., a prominent button/link placed after the payment-method content).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-3"
         ],
         "quotes": [
-          "Remove the View Plans and learn more button and add Get started Button and link it with the plans page"
+          "Create a page TOS after payment method"
         ]
       },
       "acceptanceCriteria": [
-        "The Home page hero CTA area shows exactly one button.",
-        "The single button label is exactly \"Get started\".",
-        "Clicking the \"Get started\" button navigates to /plans using the existing TanStack Router Link navigation (no full page reload).",
-        "The previously-present secondary hero button is not rendered on the Home page hero."
+        "The Payment Method page includes a visible call-to-action near the bottom (after the existing sections) that navigates to the TOS route when clicked.",
+        "Navigation uses TanStack Router <Link> (consistent with the rest of the app) and works on both desktop and mobile.",
+        "No existing Payment Method content is removed or broken."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Expose the new TOS page in site navigation data so it appears after \"Payment Method\" in the configured navigation list, and add it to the footer links where appropriate.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Create a page TOS after payment method"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/src/content/marketingContent.ts includes a new navigation entry for the TOS route placed immediately after the existing \"/payment\" entry.",
+        "Footer link lists (from marketingContent.footer.*Links) include a Terms of Service entry pointing to the TOS route (placement consistent with existing categories).",
+        "Top navigation renders the new Terms of Service link without layout issues in desktop and mobile menus."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (Shadcn UI components).",
-    "Do not edit immutable hook/bootstrap files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+    "Do not edit any files under frontend/src/components/ui (shadcn components are read-only).",
+    "Do not modify any frontend immutable paths listed in SYSTEM_CONTEXT (e.g., frontend/src/hooks/useInternetIdentity.ts(x), frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
+    "Keep backend unchanged; this is a static/legal content page addition with frontend routing/navigation only."
   ],
   "nonGoals": [
-    "No backend/canister changes.",
-    "Do not change any other pages (e.g., About, Plans content) beyond what is necessary for the Home page hero update.",
-    "Do not add new authentication or payment behavior."
+    "Implementing or modifying actual payment processing, checkout, or post-payment verification flows.",
+    "Legal review or generation of jurisdiction-specific enforceability; provide a standard, generic Terms of Service structure in English.",
+    "Adding authentication requirements or gating access to the TOS page."
   ],
   "imageRequirements": {
     "required": [],

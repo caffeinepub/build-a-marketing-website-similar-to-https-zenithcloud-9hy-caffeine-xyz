@@ -20,7 +20,7 @@ export default function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="text-base lg:text-lg px-8 py-6 font-bold transition-all duration-200 hover:scale-105 group mc-button"
+                className="text-base lg:text-lg px-8 py-6 font-bold transition-all duration-200 hover:scale-105 group mc-button cta-orange"
               >
                 <Link to="/plans">
                   {marketingContent.hero.primaryCTA}

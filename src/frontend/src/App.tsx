@@ -6,6 +6,7 @@ import PlansPage from './pages/PlansPage';
 import PaymentMethodPage from './pages/PaymentMethodPage';
 import ReviewPage from './pages/ReviewPage';
 import MorePage from './pages/MorePage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 
 const rootRoute = createRootRoute({
   component: SiteLayout,
@@ -35,6 +36,12 @@ const paymentRoute = createRoute({
   component: PaymentMethodPage,
 });
 
+const tosRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/tos',
+  component: TermsOfServicePage,
+});
+
 const reviewRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/reviews',
@@ -52,6 +59,7 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   plansRoute,
   paymentRoute,
+  tosRoute,
   reviewRoute,
   moreRoute,
 ]);

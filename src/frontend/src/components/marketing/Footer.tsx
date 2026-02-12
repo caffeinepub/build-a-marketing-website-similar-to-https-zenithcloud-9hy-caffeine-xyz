@@ -10,7 +10,7 @@ export default function Footer() {
     : 'crafthost-server';
 
   return (
-    <footer className="bg-muted/40 backdrop-blur-lg border-t-4 border-border mc-pixel-border">
+    <footer className="bg-muted/30 backdrop-blur-lg border-t-4 border-border mc-pixel-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 mb-12">
           {/* Brand Column */}

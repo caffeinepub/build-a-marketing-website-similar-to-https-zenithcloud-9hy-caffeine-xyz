@@ -10,12 +10,13 @@ export const marketingContent = {
     { path: '/about', label: 'About Us' },
     { path: '/plans', label: 'Plans' },
     { path: '/payment', label: 'Payment Method' },
+    { path: '/tos', label: 'Terms of Service' },
     { path: '/reviews', label: 'Reviews' },
     { path: '/more', label: 'More' }
   ],
 
   social: {
-    discord: 'https://discord.gg/crafthost'
+    discord: 'https://discord.gg/N2jeJTs8'
   },
 
   hero: {
@@ -26,8 +27,8 @@ export const marketingContent = {
   },
 
   features: {
-    title: 'Everything you need to craft',
-    subtitle: 'Powerful features designed to help you build the ultimate Minecraft experience.',
+    title: '',
+    subtitle: '',
     items: [
       {
         title: 'Instant Setup',
@@ -89,56 +90,107 @@ export const marketingContent = {
   },
 
   pricing: {
-    title: 'Simple, blocky pricing',
-    subtitle: 'Choose the plan that fits your world. All plans include core features.',
+    title: 'Pricing Tiers',
+    subtitle: 'Choose the perfect plan for your Minecraft server',
     plans: [
       {
-        name: 'Starter',
-        description: 'Perfect for small survival servers',
-        price: 9,
-        cta: 'Start Building',
+        name: 'ʚ Classic Plan ɞ',
+        description: '',
+        price: 40,
+        priceDisplay: '40/Month',
+        titleClass: 'text-white',
+        priceClass: 'text-purple-500',
+        cta: 'Buy now',
         recommended: false,
+        imageFilename: '179283-removebg-preview-2.png',
         features: [
-          'Up to 10 players',
-          '2 GB RAM',
-          '10 GB SSD storage',
-          'Daily backups',
-          'Mod support',
-          'Basic support'
+          'CPU: 100%',
+          'RAM: 2GB',
+          'Storage: 10GB SSD'
         ]
       },
       {
-        name: 'Pro',
-        description: 'For growing communities',
-        price: 19,
-        cta: 'Start Building',
+        name: 'ʚ Standard Plan ɞ',
+        description: '',
+        price: 80,
+        priceDisplay: '₹80 /month',
+        cta: 'Buy now',
         recommended: true,
+        imageFilename: '179287-removebg-preview-2.png',
         features: [
-          'Up to 50 players',
-          '6 GB RAM',
-          '50 GB SSD storage',
-          'Hourly backups',
-          'Full mod support',
-          'Priority support',
-          'Custom domain',
-          'Plugin manager'
+          'CPU: 200%',
+          'RAM: 4GB',
+          'Storage: 20GB SSD'
         ]
       },
       {
-        name: 'Legendary',
-        description: 'For massive multiplayer worlds',
-        price: 49,
-        cta: 'Contact Us',
+        name: 'ʚ Premium Plan ɞ',
+        description: '',
+        price: 160,
+        priceDisplay: '₹160 /month',
+        cta: 'Buy now',
         recommended: false,
+        imageFilename: '179278-removebg-preview-2.png',
         features: [
-          'Unlimited players',
-          '16 GB RAM',
-          '200 GB SSD storage',
-          'Real-time backups',
-          'Advanced mod support',
-          '24/7 dedicated support',
-          'Custom plugins',
-          'Dedicated IP'
+          'CPU: 300%',
+          'RAM: 8GB',
+          'Storage: 30GB SSD'
+        ]
+      },
+      {
+        name: 'ʚ Professional Plan ɞ',
+        description: '',
+        price: 320,
+        priceDisplay: '₹320 /month',
+        cta: 'Buy now',
+        recommended: false,
+        imageFilename: '179282-removebg-preview-2.png',
+        features: [
+          'CPU: 400%',
+          'RAM: 16GB',
+          'Storage: 40GB SSD'
+        ]
+      },
+      {
+        name: 'ʚ Enterprise Plan ɞ',
+        description: '',
+        price: 640,
+        priceDisplay: '640/Month',
+        cta: 'Buy now',
+        recommended: false,
+        imageFilename: '179281-removebg-preview-2.png',
+        features: [
+          'CPU: 450%',
+          'RAM: 32GB',
+          'Storage: 40GB SSD'
+        ]
+      },
+      {
+        name: 'ʚ Unlimited Plan ɞ',
+        description: '',
+        price: 960,
+        priceDisplay: '960/month',
+        cta: 'Buy now',
+        recommended: false,
+        imageFilename: '179276-removebg-preview-2.png',
+        features: [
+          'CPU: 500%',
+          'RAM: 48GB',
+          'Storage: 50GB SSD'
+        ]
+      },
+      {
+        name: 'ʚ CraftHost Plan ɞ',
+        description: '',
+        price: 1280,
+        priceDisplay: '1280 /month',
+        cta: 'Buy now',
+        recommended: false,
+        imageFilename: '179295-removebg-preview-2.png',
+        features: [
+          'CPU: 700%',
+          'RAM: 64GB',
+          'Storage: 60GB SSD'
         ]
       }
     ]
@@ -192,6 +244,7 @@ export const marketingContent = {
     companyLinks: [
       { label: 'About Us', path: '/about' },
       { label: 'Payment', path: '/payment' },
+      { label: 'Terms of Service', path: '/tos' },
       { label: 'More', path: '/more' }
     ]
   },
@@ -233,25 +286,14 @@ export const marketingContent = {
         ]
       },
       {
-        name: 'PayPal',
-        description: 'Pay safely with your PayPal account',
+        name: 'UPI',
+        description: 'Pay instantly with your UPI account',
         icon: 'wallet',
         details: [
-          'No credit card needed',
-          'Buyer protection included',
-          'Instant activation',
+          'All UPI apps supported',
+          'Instant payment confirmation',
+          'Secure and encrypted',
           'Easy refunds'
-        ]
-      },
-      {
-        name: 'Cryptocurrency',
-        description: 'Pay with Bitcoin, Ethereum, and more',
-        icon: 'coins',
-        details: [
-          'Bitcoin, Ethereum, Litecoin',
-          'Low transaction fees',
-          'Anonymous payments',
-          'Instant confirmation'
         ]
       }
     ],
@@ -263,6 +305,15 @@ export const marketingContent = {
         '256-bit SSL encryption',
         'Fraud detection & prevention',
         'Secure payment gateway partners'
+      ]
+    },
+    conditions: {
+      title: 'Conditions for Payment and Server Access',
+      items: [
+        'You have to pay us advance some amount in redeem code.',
+        'After giving the redeem code in ticket, we will make the panel and give you.',
+        'You will login and within 24 hours have to pay the rest amount through UPI.',
+        'Not paying within 24 hours will lead to termination.'
       ]
     }
   },

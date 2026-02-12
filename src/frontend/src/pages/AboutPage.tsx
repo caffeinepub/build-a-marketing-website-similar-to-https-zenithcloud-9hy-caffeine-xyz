@@ -1,5 +1,6 @@
 import { marketingContent } from '../content/marketingContent';
 import MotionInView from '../components/marketing/MotionInView';
+import FAQSection from '../components/marketing/FAQSection';
 import { Pickaxe, Sword, Shield, Compass } from 'lucide-react';
 
 export default function AboutPage() {
@@ -44,7 +45,7 @@ export default function AboutPage() {
         </div>
 
         <MotionInView delay={0.3}>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto mb-16">
             <div className="mc-card p-8 lg:p-12 text-center">
               <div className="flex justify-center gap-8 mb-8">
                 <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mc-pixel-border">
@@ -64,6 +65,8 @@ export default function AboutPage() {
           </div>
         </MotionInView>
       </div>
+      
+      <FAQSection />
     </div>
   );
 }

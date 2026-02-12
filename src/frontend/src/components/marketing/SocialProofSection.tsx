@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react';
 
 export default function SocialProofSection() {
   return (
-    <SectionShell id="social-proof" className="bg-muted/30">
+    <SectionShell id="social-proof" className="bg-transparent">
       <div className="text-center mb-12 lg:mb-16">
         <MotionInView>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 minecraft-text">

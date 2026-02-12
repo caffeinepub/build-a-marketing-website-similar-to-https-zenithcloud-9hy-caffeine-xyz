@@ -60,7 +60,7 @@ export default function TopNav() {
             <Button
               asChild
               size="lg"
-              className="font-bold transition-all duration-200 hover:scale-105 mc-button"
+              className="font-bold transition-all duration-200 hover:scale-105 mc-button topnav-cta-black"
             >
               <Link to="/plans">{marketingContent.nav.ctaText}</Link>
             </Button>
@@ -69,10 +69,10 @@ export default function TopNav() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-full text-foreground hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="md:hidden p-2 rounded-full hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
           </button>
         </div>
 
@@ -85,7 +85,7 @@ export default function TopNav() {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`px-4 py-3 text-base font-bold transition-colors duration-200 text-left rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring mc-pixel-border ${
+                  className={`px-4 py-3 text-base font-bold transition-colors duration-200 text-left rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     currentPath === item.path
                       ? 'text-primary bg-primary/10'
                       : 'text-foreground/80 hover:text-foreground hover:bg-accent'
@@ -98,7 +98,7 @@ export default function TopNav() {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full font-bold mc-button"
+                  className="w-full font-bold mc-button topnav-cta-black"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Link to="/plans">{marketingContent.nav.ctaText}</Link>

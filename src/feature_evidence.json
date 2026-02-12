@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-home-page-hero-section-copy-to-use-the-following-english-text-headline-high-performance-game-servers-and-subheadline-experience-lightning-fast-performance-unbeatable-reliability-and-24-7-support-for-all-your-favorite-games",
-      "featureTitle": "Update the Home page hero section copy to use the following English text: headline \"High Performance Game Servers\" and subheadline \"Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.\"",
+      "featureId": "feature-add-a-new-terms-of-service-tos-page-that-is-accessible-via-a-new-route-e-g-tos-and-uses-english-user-facing-text",
+      "featureTitle": "Add a new Terms of Service (TOS) page that is accessible via a new route (e.g., \"/tos\") and uses English user-facing text.",
       "files": [
-        "frontend/src/content/marketingContent.ts"
+        "frontend/src/App.tsx",
+        "frontend/src/pages/TermsOfServicePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,11 +21,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-on-the-home-page-hero-section-remove-the-existing-view-plans-and-learn-more-buttons-and-replace-them-with-a-single-primary-button-labeled-get-started-that-navigates-to-the-plans-page-route-plans",
-      "featureTitle": "On the Home page hero section, remove the existing \"View Plans\" and \"Learn More\" buttons and replace them with a single primary button labeled \"Get started\" that navigates to the Plans page route (/plans).",
+      "featureId": "feature-update-the-payment-method-page-to-provide-a-clear-next-step-navigation-to-the-new-tos-page-i-e-a-prominent-button-link-placed-after-the-payment-method-content",
+      "featureTitle": "Update the Payment Method page to provide a clear next-step navigation to the new TOS page (i.e., a prominent button/link placed after the payment-method content).",
       "files": [
-        "frontend/src/components/marketing/HeroSection.tsx",
-        "frontend/src/content/marketingContent.ts"
+        "frontend/src/pages/PaymentMethodPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,6 +35,24 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-expose-the-new-tos-page-in-site-navigation-data-so-it-appears-after-payment-method-in-the-configured-navigation-list-and-add-it-to-the-footer-links-where-appropriate",
+      "featureTitle": "Expose the new TOS page in site navigation data so it appears after \"Payment Method\" in the configured navigation list, and add it to the footer links where appropriate.",
+      "files": [
+        "frontend/src/content/marketingContent.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }
