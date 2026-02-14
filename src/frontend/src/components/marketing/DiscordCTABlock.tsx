@@ -1,4 +1,5 @@
 import { SiDiscord } from 'react-icons/si';
+import { Mail } from 'lucide-react';
 import { marketingContent } from '../../content/marketingContent';
 
 export default function DiscordCTABlock() {
@@ -15,6 +16,13 @@ export default function DiscordCTABlock() {
               <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
                 Connect with our community of gamers and developers. Get instant support, share experiences, and stay updated with the latest news.
               </p>
+              <a
+                href={`mailto:${marketingContent.supportEmail}`}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded font-medium inline-flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                Support: {marketingContent.supportEmail}
+              </a>
             </div>
             <a
               href={marketingContent.social.discord}

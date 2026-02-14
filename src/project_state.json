@@ -7,26 +7,18 @@
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-a-new-terms-of-service-tos-page-that-is-accessible-via-a-new-route-e-g-tos-and-uses-english-user-facing-text",
-      "title": "Add a new Terms of Service (TOS) page that is accessible via a new route (e.g., \"/tos\") and uses English user-facing text.",
+      "id": "feature-add-a-user-facing-suggestions-feedback-form-in-the-frontend-where-visitors-can-submit-feedback-text-and-optionally-their-name-and-contact-info-and-show-clear-success-error-states-in-english",
+      "title": "Add a user-facing suggestions/feedback form in the frontend where visitors can submit feedback text (and optionally their name and contact info), and show clear success/error states in English.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-update-the-payment-method-page-to-provide-a-clear-next-step-navigation-to-the-new-tos-page-i-e-a-prominent-button-link-placed-after-the-payment-method-content",
-      "title": "Update the Payment Method page to provide a clear next-step navigation to the new TOS page (i.e., a prominent button/link placed after the payment-method content).",
+      "id": "feature-wire-the-frontend-feedback-form-submission-to-the-backend-feedback-api-using-react-query-and-handle-backend-validation-errors-gracefully",
+      "title": "Wire the frontend feedback form submission to the backend feedback API using React Query, and handle backend validation/errors gracefully.",
       "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-expose-the-new-tos-page-in-site-navigation-data-so-it-appears-after-payment-method-in-the-configured-navigation-list-and-add-it-to-the-footer-links-where-appropriate",
-      "title": "Expose the new TOS page in site navigation data so it appears after \"Payment Method\" in the configured navigation list, and add it to the footer links where appropriate.",
-      "reqIds": [
-        "REQ-3"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -34,13 +26,28 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add a Terms of Service (TOS) page shown after the payment method step",
+      "summary": "Add a suggestions/feedback form that sends submissions to a Discord channel (via webhook/integration)",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement a backend Motoko API to accept feedback submissions, persist them (at least as an append-only log), and forward each submission to a specified Discord channel using a Discord webhook URL.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add an admin-only mechanism to configure or update the Discord webhook URL used for forwarding feedback submissions.",
+      "reqIds": [
+        "REQ-3"
+      ],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Add Terms of Service page after Payment Method",
+  "projectName": "Add suggestions/feedback form and send submissions to a Discord channel",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

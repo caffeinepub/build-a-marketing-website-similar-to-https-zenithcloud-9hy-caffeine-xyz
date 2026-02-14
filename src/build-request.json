@@ -1,72 +1,90 @@
 {
   "kind": "build_request",
-  "title": "Add Terms of Service page after Payment Method",
+  "title": "Add suggestions/feedback form and send submissions to a Discord channel",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a new Terms of Service (TOS) page that is accessible via a new route (e.g., \"/tos\") and uses English user-facing text.",
+      "text": "Add a user-facing suggestions/feedback form in the frontend where visitors can submit feedback text (and optionally their name and contact info), and show clear success/error states in English.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-1"
         ],
         "quotes": [
-          "Create a page TOS after payment method"
+          "If i want to add a form where people can drop there suggestions feedback and I will receive then in a discord channel ? Can I do this"
         ]
       },
       "acceptanceCriteria": [
-        "A new page component exists at a non-immutable path under frontend/src/pages (e.g., TermsOfServicePage.tsx or TosPage.tsx).",
-        "App routing includes a new route for the TOS page (e.g., path \"/tos\") and it renders inside the existing SiteLayout.",
-        "The TOS page content is written in English and is readable (clear headings/sections) with styling consistent with the existing Minecraft-themed cards/typography used across other pages."
+        "A new UI section or page contains a feedback form with at least a required message field.",
+        "Client-side validation prevents submitting empty messages and enforces reasonable max lengths (e.g., message <= 2000 chars).",
+        "On submit, the UI shows a loading state, then either a success confirmation (form resets) or an error message.",
+        "All user-facing strings added for this feature are in English."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Update the Payment Method page to provide a clear next-step navigation to the new TOS page (i.e., a prominent button/link placed after the payment-method content).",
-      "target": "frontend",
+      "text": "Implement a backend Motoko API to accept feedback submissions, persist them (at least as an append-only log), and forward each submission to a specified Discord channel using a Discord webhook URL.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-1"
         ],
         "quotes": [
-          "Create a page TOS after payment method"
+          "I will receive then in a discord channel"
         ]
       },
       "acceptanceCriteria": [
-        "The Payment Method page includes a visible call-to-action near the bottom (after the existing sections) that navigates to the TOS route when clicked.",
-        "Navigation uses TanStack Router <Link> (consistent with the rest of the app) and works on both desktop and mobile.",
-        "No existing Payment Method content is removed or broken."
+        "Backend exposes an update method to submit feedback (message + optional fields) and returns a success/error result.",
+        "Each accepted submission is stored in canister state so it can be retrieved later (e.g., for auditing/debugging).",
+        "On successful submission, the backend attempts to POST a formatted message to the configured Discord webhook URL.",
+        "If the Discord webhook call fails, the backend returns a clear error result and still records the submission status (e.g., pending/failed/sent)."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Expose the new TOS page in site navigation data so it appears after \"Payment Method\" in the configured navigation list, and add it to the footer links where appropriate.",
-      "target": "frontend",
+      "text": "Add an admin-only mechanism to configure or update the Discord webhook URL used for forwarding feedback submissions.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-1"
         ],
         "quotes": [
-          "Create a page TOS after payment method"
+          "receive then in a discord channel"
         ]
       },
       "acceptanceCriteria": [
-        "frontend/src/content/marketingContent.ts includes a new navigation entry for the TOS route placed immediately after the existing \"/payment\" entry.",
-        "Footer link lists (from marketingContent.footer.*Links) include a Terms of Service entry pointing to the TOS route (placement consistent with existing categories).",
-        "Top navigation renders the new Terms of Service link without layout issues in desktop and mobile menus."
+        "There is a backend method to set/update the Discord webhook URL.",
+        "Only an authorized identity (e.g., canister controller/admin principal) can set/update the webhook URL; unauthorized calls are rejected.",
+        "The webhook URL is not hardcoded in the frontend."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Wire the frontend feedback form submission to the backend feedback API using React Query, and handle backend validation/errors gracefully.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the form calls the backend actor method via the existing actor/hook patterns.",
+        "Frontend displays backend validation errors (e.g., message too long) without crashing.",
+        "Duplicate rapid submissions are prevented in the UI while a submission is in-flight."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (shadcn components are read-only).",
-    "Do not modify any frontend immutable paths listed in SYSTEM_CONTEXT (e.g., frontend/src/hooks/useInternetIdentity.ts(x), frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
-    "Keep backend unchanged; this is a static/legal content page addition with frontend routing/navigation only."
+    "Do not edit files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything in frontend/src/components/ui (compose them instead).",
+    "Backend must remain a single Motoko actor in backend/main.mo; only add backend/migration.mo if state upgrades require it.",
+    "Discord delivery must use a Discord webhook URL provided/configured by the project owner; no third-party Discord bot libraries or external servers.",
+    "Use HTTPS outcalls from the canister (if required by the chosen implementation); do not introduce non-IC backend services."
   ],
   "nonGoals": [
-    "Implementing or modifying actual payment processing, checkout, or post-payment verification flows.",
-    "Legal review or generation of jurisdiction-specific enforceability; provide a standard, generic Terms of Service structure in English.",
-    "Adding authentication requirements or gating access to the TOS page."
+    "Building a full Discord bot with gateway events, slash commands, or OAuth installation.",
+    "Adding third-party anti-spam services (CAPTCHA providers) or email/SMS notifications.",
+    "Real-time chat or WebSocket-based messaging."
   ],
   "imageRequirements": {
     "required": [],

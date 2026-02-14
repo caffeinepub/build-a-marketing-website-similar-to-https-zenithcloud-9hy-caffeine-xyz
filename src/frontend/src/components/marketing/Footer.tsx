@@ -1,5 +1,5 @@
 import { SiX, SiGithub, SiLinkedin, SiDiscord } from 'react-icons/si';
-import { Heart } from 'lucide-react';
+import { Heart, Mail } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { marketingContent } from '../../content/marketingContent';
 
@@ -106,16 +106,36 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground font-medium">
-            © {currentYear} {marketingContent.brandName}. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm text-muted-foreground font-medium">
+              © {currentYear} {marketingContent.brandName}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href={marketingContent.social.discord}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded font-medium flex items-center gap-2"
+              >
+                <SiDiscord className="w-4 h-4" />
+                {marketingContent.footer.discordContactText}
+              </a>
+              <a
+                href={`mailto:${marketingContent.supportEmail}`}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded font-medium flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                Support
+              </a>
+            </div>
+          </div>
           <p className="text-sm text-muted-foreground font-medium flex items-center gap-1">
             Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> using{' '}
             <a
               href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded font-bold"
+              className="hover:text-foreground transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
             >
               caffeine.ai
             </a>

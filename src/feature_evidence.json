@@ -2,18 +2,20 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-new-terms-of-service-tos-page-that-is-accessible-via-a-new-route-e-g-tos-and-uses-english-user-facing-text",
-      "featureTitle": "Add a new Terms of Service (TOS) page that is accessible via a new route (e.g., \"/tos\") and uses English user-facing text.",
+      "featureId": "feature-add-a-user-facing-suggestions-feedback-form-in-the-frontend-where-visitors-can-submit-feedback-text-and-optionally-their-name-and-contact-info-and-show-clear-success-error-states-in-english",
+      "featureTitle": "Add a user-facing suggestions/feedback form in the frontend where visitors can submit feedback text (and optionally their name and contact info), and show clear success/error states in English.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/TermsOfServicePage.tsx"
+        "frontend/src/components/feedback/FeedbackFormSection.tsx",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
       ],
       "testIds": [
         "REQ-1"
@@ -21,38 +23,24 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-payment-method-page-to-provide-a-clear-next-step-navigation-to-the-new-tos-page-i-e-a-prominent-button-link-placed-after-the-payment-method-content",
-      "featureTitle": "Update the Payment Method page to provide a clear next-step navigation to the new TOS page (i.e., a prominent button/link placed after the payment-method content).",
+      "featureId": "feature-wire-the-frontend-feedback-form-submission-to-the-backend-feedback-api-using-react-query-and-handle-backend-validation-errors-gracefully",
+      "featureTitle": "Wire the frontend feedback form submission to the backend feedback API using React Query, and handle backend validation/errors gracefully.",
       "files": [
-        "frontend/src/pages/PaymentMethodPage.tsx"
+        "frontend/src/components/feedback/FeedbackFormSection.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/hooks/useSubmitFeedbackMutation.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-expose-the-new-tos-page-in-site-navigation-data-so-it-appears-after-payment-method-in-the-configured-navigation-list-and-add-it-to-the-footer-links-where-appropriate",
-      "featureTitle": "Expose the new TOS page in site navigation data so it appears after \"Payment Method\" in the configured navigation list, and add it to the footer links where appropriate.",
-      "files": [
-        "frontend/src/content/marketingContent.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
+        "REQ-4"
       ],
       "confidence": "high"
     }

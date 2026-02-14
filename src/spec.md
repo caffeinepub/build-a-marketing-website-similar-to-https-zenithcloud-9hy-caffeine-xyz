@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add a new Terms of Service page and wire it into routing and navigation immediately after the Payment Method page.
+**Goal:** Add a suggestions/feedback form that submits entries to the app backend and forwards each submission to a configured Discord channel via webhook.
 
 **Planned changes:**
-- Create a new Terms of Service page component under `frontend/src/pages` with clear English sections/headings and styling consistent with existing Minecraft-themed UI.
-- Add a new route (e.g., `/tos`) that renders the Terms of Service page within the existing `SiteLayout`.
-- Update the Payment Method page to include a prominent next-step button/link after existing content that navigates to the Terms of Service page using TanStack Router `<Link>`.
-- Update `frontend/src/content/marketingContent.ts` to add a Terms of Service navigation entry placed immediately after the existing `/payment` entry, and include a Terms of Service link in the footer links where appropriate.
+- Add a new frontend feedback form (required message, optional name/contact), with client-side validation, loading state, and clear success/error messaging in English.
+- Implement a Motoko backend API to accept feedback submissions, store them in canister state as an append-only log, and attempt to forward each submission to a Discord webhook.
+- Record per-submission delivery status (e.g., sent/failed/pending) and return clear errors when Discord delivery fails.
+- Add an admin-only backend method to set/update the Discord webhook URL (not hardcoded in the frontend).
+- Wire the frontend form submission to the backend using existing actor patterns and React Query, prevent duplicate rapid submissions while in-flight, and display backend validation/errors gracefully.
 
-**User-visible outcome:** Users can navigate to a new Terms of Service page via a direct `/tos` route, a call-to-action at the bottom of the Payment Method page, and new header/footer navigation links.
+**User-visible outcome:** Visitors can submit suggestions/feedback through a form and see a clear success or error result; project owners can configure a Discord webhook so submissions are forwarded to a Discord channel.

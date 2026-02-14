@@ -1,5 +1,6 @@
 export const marketingContent = {
   brandName: 'CraftHost',
+  supportEmail: 'helpcrafthost@gmail.com',
   
   nav: {
     ctaText: 'Get Started'
@@ -236,6 +237,7 @@ export const marketingContent = {
 
   footer: {
     tagline: 'The ultimate Minecraft hosting platform for builders and adventurers.',
+    discordContactText: 'Discord',
     productLinks: [
       { label: 'Home', path: '/' },
       { label: 'Plans', path: '/plans' },

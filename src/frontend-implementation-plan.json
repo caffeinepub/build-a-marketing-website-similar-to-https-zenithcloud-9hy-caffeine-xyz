@@ -1,58 +1,58 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Terms of Service page and navigation after Payment Method",
+  "title": "Feedback form UI and React Query submission wiring",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Create a new Terms of Service page with an accessible /tos route rendered inside the existing SiteLayout, using English legal content styled consistently with existing Minecraft-themed UI.",
+      "summary": "Add a user-facing feedback form section with optional name/contact fields and clear English success/error states.",
       "acceptanceCriteria": [
-        "A new page component exists at a non-immutable path under frontend/src/pages (e.g., TermsOfServicePage.tsx or TosPage.tsx).",
-        "App routing includes a new route for the TOS page (e.g., path \"/tos\") and it renders inside the existing SiteLayout.",
-        "The TOS page content is written in English and is readable (clear headings/sections) with styling consistent with the existing Minecraft-themed cards/typography used across other pages."
+        "A new UI section or page contains a feedback form with at least a required message field.",
+        "Client-side validation prevents submitting empty messages and enforces reasonable max lengths (e.g., message <= 2000 chars).",
+        "On submit, the UI shows a loading state, then either a success confirmation (form resets) or an error message.",
+        "All user-facing strings added for this feature are in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/TermsOfServicePage.tsx",
+          "path": "frontend/src/components/feedback/FeedbackFormSection.tsx",
           "operation": "create",
-          "description": "Add a new TermsOfServicePage that renders a clear English Terms of Service structure (e.g., Introduction, Eligibility, Accounts, Payments/Refunds reference, Acceptable Use, UGC, Service Availability, Termination, Disclaimers, Limitation of Liability, Changes, Contact) using existing mc-card / minecraft-text styling patterns and MotionInView for consistent animated sections. Verify the component's usage instructions before implementing."
+          "description": "Create a reusable FeedbackFormSection component that renders inputs for message (required), name (optional), and contact info (optional), with client-side validation (non-empty message, message length <= 2000, reasonable limits for optional fields) and English success/error/loading UI. Use shadcn-ui components (e.g., Button, Input, Textarea, Card/Alert equivalents) to match existing design; verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Register a new TanStack Router route for the TOS page at path \"/tos\" (as a child of the root route so it renders within SiteLayout), and import the new TermsOfServicePage component. Verify the component's usage instructions before implementing."
+          "description": "Wire the new FeedbackFormSection into the existing HomePage as a new section (use the existing SectionShell pattern and provide a stable section id for in-page linking if needed). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add minimal global styling adjustments only if needed to support the feedback section (spacing/scroll offset consistency with SectionShell), keeping all user-facing strings in English and maintaining the existing theme tokens. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-2",
-      "summary": "Add a prominent next-step CTA on the Payment Method page that navigates to the new /tos route without altering existing content.",
+      "id": "REQ-4",
+      "summary": "Submit feedback via React Query using existing actor patterns and handle backend errors gracefully while preventing duplicate in-flight submissions.",
       "acceptanceCriteria": [
-        "The Payment Method page includes a visible call-to-action near the bottom (after the existing sections) that navigates to the TOS route when clicked.",
-        "Navigation uses TanStack Router <Link> (consistent with the rest of the app) and works on both desktop and mobile.",
-        "No existing Payment Method content is removed or broken."
+        "Submitting the form calls the backend actor method via the existing actor/hook patterns.",
+        "Frontend displays backend validation errors (e.g., message too long) without crashing.",
+        "Duplicate rapid submissions are prevented in the UI while a submission is in-flight."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/PaymentMethodPage.tsx",
-          "operation": "modify",
-          "description": "Append a new bottom section (after the existing payment/security content) containing a prominent CTA that uses TanStack Router Link to navigate to \"/tos\"; use the shadcn-ui Button (existing app pattern) for prominence while keeping all current sections intact. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Expose the Terms of Service route in shared marketing navigation and footer link lists so it appears after Payment Method and is discoverable from the footer.",
-      "acceptanceCriteria": [
-        "frontend/src/content/marketingContent.ts includes a new navigation entry for the TOS route placed immediately after the existing \"/payment\" entry.",
-        "Footer link lists (from marketingContent.footer.*Links) include a Terms of Service entry pointing to the TOS route (placement consistent with existing categories).",
-        "Top navigation renders the new Terms of Service link without layout issues in desktop and mobile menus."
-      ],
-      "file_operations": [
+          "path": "frontend/src/hooks/useSubmitFeedbackMutation.ts",
+          "operation": "create",
+          "description": "Add a dedicated React Query mutation hook that uses the existing useActor hook to call the backend submitFeedback method, normalizes thrown errors into user-displayable messages, and exposes in-flight state for disabling the submit button. Verify the component's usage instructions before implementing."
+        },
         {
-          "path": "frontend/src/content/marketingContent.ts",
+          "path": "frontend/src/components/feedback/FeedbackFormSection.tsx",
           "operation": "modify",
-          "description": "Add a new navigation item { path: \"/tos\", label: \"Terms of Service\" } immediately after the existing \"/payment\" entry, and add a corresponding footer link (e.g., in companyLinks near Payment) pointing to \"/tos\" so TopNav and Footer render it automatically from shared data. Verify the component's usage instructions before implementing."
+          "description": "Integrate useSubmitFeedbackMutation: on submit, call the mutation, disable submit while pending to prevent duplicates, show a loading state, handle backend errors gracefully (render English error text), and on success reset the form and show an English confirmation message. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Update the placeholder hook barrel to export the new feedback submission hook (or document that hooks are now split), without touching restricted hook files. Verify the component's usage instructions before implementing."
         }
       ]
     }

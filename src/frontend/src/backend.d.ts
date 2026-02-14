@@ -7,5 +7,42 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface TransformationInput {
+    context: Uint8Array;
+    response: http_request_result;
+}
+export interface Feedback {
+    id: bigint;
+    user: Principal;
+    feedback: string;
+    discordUser?: string;
+}
+export interface TransformationOutput {
+    status: bigint;
+    body: Uint8Array;
+    headers: Array<http_header>;
+}
+export interface http_header {
+    value: string;
+    name: string;
+}
+export interface http_request_result {
+    status: bigint;
+    body: Uint8Array;
+    headers: Array<http_header>;
+}
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
 export interface backendInterface {
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    getCallerUserRole(): Promise<UserRole>;
+    getFeedbackById(id: bigint): Promise<Feedback | null>;
+    getFeedbackRange(startId: bigint, endId: bigint): Promise<Array<Feedback>>;
+    isCallerAdmin(): Promise<boolean>;
+    setDiscordWebhookUrl(url: string): Promise<void>;
+    submitFeedback(feedbackText: string, discordUser: string | null): Promise<void>;
+    transform(input: TransformationInput): Promise<TransformationOutput>;
 }
